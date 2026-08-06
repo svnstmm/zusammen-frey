@@ -1,0 +1,40 @@
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: var(--grain-opacity);
+  mix-blend-mode: multiply;
+}
+
+.noise {
+  position: absolute;
+  inset: -20%;
+  width: 140%;
+  height: 140%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  animation: flicker var(--flicker-duration) steps(2) infinite;
+}
+
+@keyframes flicker {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0.9;
+  }
+  50% {
+    transform: translate(-1.5%, 1%);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(1%, -0.5%);
+    opacity: 0.85;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .noise {
+    animation: none;
+  }
+}

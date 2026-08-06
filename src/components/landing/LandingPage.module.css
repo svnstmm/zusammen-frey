@@ -1,0 +1,93 @@
+.page {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100svh;
+  padding: var(--page-pad-y) var(--page-pad-x);
+}
+
+.frame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(100%, var(--content-max));
+  text-align: center;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+  font-weight: 400;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  text-indent: 0.38em;
+  color: var(--color-ink-muted);
+}
+
+.title {
+  margin-top: var(--space-6);
+  font-family: var(--font-display);
+  font-size: var(--text-hero);
+  font-weight: 400;
+  letter-spacing: 0.085em;
+  line-height: 0.95;
+  text-indent: 0.085em;
+  color: var(--color-ink);
+  text-wrap: balance;
+}
+
+.divider {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-6);
+  margin-bottom: var(--space-6);
+}
+
+.dividerMark {
+  display: block;
+  width: 1px;
+  height: 2.75rem;
+  background-color: var(--color-accent);
+  opacity: 0.85;
+}
+
+.logline {
+  font-family: var(--font-serif);
+  font-size: clamp(1.25rem, 2.6vw, 1.65rem);
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0.02em;
+  line-height: 1.35;
+  color: var(--color-ink-soft);
+}
+
+.synopsis {
+  margin-top: var(--space-5);
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+  line-height: 1.9;
+}
+
+.synopsis p {
+  text-indent: 0.22em;
+}
+
+.action {
+  margin-top: var(--space-8);
+}
+
+@media (max-width: 480px) {
+  .title {
+    letter-spacing: 0.06em;
+    text-indent: 0.06em;
+  }
+
+  .action {
+    margin-top: var(--space-7);
+  }
+}
