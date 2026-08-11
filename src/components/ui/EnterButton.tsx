@@ -5,20 +5,26 @@ import styles from './EnterButton.module.css';
 interface EnterButtonProps {
   onEnter: () => void;
   disabled?: boolean;
+  label?: string;
+  className?: string;
 }
 
-export function EnterButton({ onEnter, disabled = false }: EnterButtonProps) {
+export function EnterButton({
+  onEnter,
+  disabled = false,
+  label = "View Director's Cut",
+  className,
+}: EnterButtonProps) {
   return (
     <motion.button
       type="button"
-      className={styles.button}
+      className={[styles.button, className].filter(Boolean).join(' ')}
       onClick={onEnter}
       disabled={disabled}
-      whileTap={disabled ? undefined : { opacity: 0.55 }}
+      whileTap={disabled ? undefined : { opacity: 0.7 }}
       transition={fadeTransition}
     >
-      <span className={styles.label}>Enter</span>
-      <span className={styles.rule} aria-hidden="true" />
+      <span className={styles.label}>{label}</span>
     </motion.button>
   );
 }

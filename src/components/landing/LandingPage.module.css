@@ -2,94 +2,210 @@
   position: relative;
   z-index: 2;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
   min-height: 100svh;
-  padding: var(--page-pad-y) var(--page-pad-x);
+  min-height: 100dvh;
 }
 
-.frame {
+.stage {
+  position: relative;
+  flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: min(100%, var(--content-max));
-  text-align: center;
+  padding:
+    max(3.75rem, calc(env(safe-area-inset-top) + 2.75rem))
+    1.15rem
+    clamp(3.5rem, 11vh, 6rem);
+  min-height: 0;
 }
 
+.lockup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 24rem;
+  margin: auto auto 0;
+}
+
+/* Mobile: keep DIRECTOR'S CUT pinned to the top of the stage */
 .eyebrow {
+  position: absolute;
+  top: max(3.75rem, calc(env(safe-area-inset-top) + 2.75rem));
+  left: 0;
+  right: 0;
   font-family: var(--font-display);
-  font-size: var(--text-small);
+  font-size: 1rem;
   font-weight: 700;
-  letter-spacing: 0.36em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  text-indent: 0.36em;
-  color: var(--color-ink-muted);
+  text-indent: 0.2em;
+  color: #ffffff;
+  text-align: center;
+  text-shadow: 0 1px 18px rgba(0, 0, 0, 0.35);
 }
 
 .title {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-top: var(--space-6);
+  align-items: flex-start;
   color: var(--color-accent);
-  line-height: 0.92;
+  line-height: 0.82;
 }
 
 .titlePrefix {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 0.06em;
   font-family: var(--font-display);
-  font-size: var(--text-hero-sub);
-  font-weight: 400;
-  letter-spacing: 0.04em;
+  font-size: clamp(2.75rem, 15.5vw, 3.9rem);
+  font-weight: 700;
+  letter-spacing: -0.1em;
   text-transform: lowercase;
 }
 
 .titleEmphasis {
-  margin-top: 0.06em;
+  /* Figma mobile: FREY inset ~73px relative to zusammen */
+  margin-left: clamp(2.75rem, 18vw, 4.6rem);
   font-family: var(--font-display);
-  font-size: var(--text-hero);
+  font-size: clamp(6.25rem, 36vw, 9.15rem);
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: -0.1em;
   text-transform: uppercase;
-  text-indent: 0.06em;
+  line-height: 0.78;
 }
 
-.divider {
-  display: flex;
-  justify-content: center;
-  margin-top: var(--space-6);
-  margin-bottom: var(--space-6);
+.tagline {
+  align-self: flex-end;
+  margin-top: clamp(0.35rem, 1.2vh, 0.75rem);
+  margin-right: 0.15rem;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-indent: 0.2em;
+  color: var(--color-ink);
+  line-height: 1.35;
+  text-align: left;
 }
 
-.dividerMark {
+.taglineBreak {
   display: block;
-  width: 1px;
-  height: 2.75rem;
-  background-color: var(--color-accent);
-  opacity: 0.85;
+  content: '';
 }
 
-.synopsis {
-  font-family: var(--font-display);
-  font-size: var(--text-small);
-  font-weight: 700;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  text-indent: 0.22em;
-  color: var(--color-ink-muted);
-  line-height: 1.9;
+.footer {
+  position: relative;
+  z-index: 2;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -0.5rem;
+  padding:
+    0.35rem
+    1.25rem
+    max(1.75rem, calc(env(safe-area-inset-bottom) + 1.1rem));
+  background: transparent;
 }
 
-.action {
-  margin-top: var(--space-8);
-}
-
-@media (max-width: 480px) {
-  .titleEmphasis {
-    letter-spacing: 0.045em;
-    text-indent: 0.045em;
+@media (max-width: 390px) {
+  .titlePrefix {
+    font-size: clamp(2.4rem, 14vw, 3.2rem);
   }
 
-  .action {
-    margin-top: var(--space-7);
+  .titleEmphasis {
+    font-size: clamp(5.5rem, 34vw, 7.5rem);
+  }
+
+  .tagline {
+    font-size: 0.9rem;
+    letter-spacing: 0.18em;
+    text-indent: 0.18em;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 899px) {
+  .stage {
+    padding-left: 1.75rem;
+    padding-right: 1.75rem;
+  }
+
+  .lockup {
+    max-width: 28rem;
+  }
+}
+
+/*
+ * Desktop — Figma MacBook Air:
+ * photo pushed up, faces clear in the upper band,
+ * lockup mid-frame, tagline + CTA on the right.
+ */
+@media (min-width: 900px) {
+  .stage {
+    display: block;
+    padding:
+      clamp(4rem, 8vh, 6rem)
+      clamp(2rem, 4vw, 3.5rem)
+      0;
+  }
+
+  .lockup {
+    position: absolute;
+    left: clamp(14%, 20vw, 26%);
+    top: 44%;
+    max-width: none;
+    width: max-content;
+    margin: 0;
+    transform: translateY(-45%);
+  }
+
+  .eyebrow {
+    position: static;
+    left: auto;
+    right: auto;
+    top: auto;
+    margin: 0 0 0.15rem;
+    text-align: left;
+  }
+
+  .titlePrefix {
+    font-size: clamp(4.5rem, 8.3vw, 6.7rem);
+    margin-bottom: 0.1em;
+  }
+
+  .titleEmphasis {
+    /* Figma: FREY left 456 vs zusammen 331 → ~125px inset */
+    margin-left: clamp(4.5rem, 9.8vw, 7.85rem);
+    font-size: clamp(10rem, 19.5vw, 15.7rem);
+  }
+
+  .tagline {
+    position: absolute;
+    right: clamp(2rem, 4vw, 3.5rem);
+    bottom: clamp(4.25rem, 8vh, 5.75rem);
+    align-self: auto;
+    margin: 0;
+    width: min(25rem, 31.25vw);
+    text-align: center;
+    text-indent: 0.2em;
+  }
+
+  .taglineBreak {
+    display: none;
+  }
+
+  .footer {
+    justify-content: flex-end;
+    margin-top: 0;
+    padding:
+      0.85rem
+      clamp(2rem, 4vw, 3.5rem)
+      max(1.75rem, calc(env(safe-area-inset-bottom) + 1.25rem));
+  }
+
+  .cta {
+    width: min(25rem, 31.25vw);
   }
 }

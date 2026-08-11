@@ -19,14 +19,30 @@
   background-repeat: no-repeat;
   background-position: center 22%;
   background-size: cover;
-  filter: saturate(0.88) contrast(1.05) brightness(1.02);
   transform: scale(1.06);
+  transition: filter 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .veil {
   position: absolute;
   inset: 0;
-  /* Keep faces faintly visible; wash more toward the reading plane */
+  transition: opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.whiteout {
+  position: absolute;
+  inset: 0;
+  background: #ffffff;
+  opacity: 0;
+  transition: opacity 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Chapter / detail pages — readable editorial wash */
+.soft .backdrop {
+  filter: saturate(0.88) contrast(1.05) brightness(1.02);
+}
+
+.soft .veil {
   background:
     linear-gradient(
       180deg,
@@ -41,4 +57,89 @@
       rgba(255, 255, 255, 0.62) 70%,
       rgba(255, 255, 255, 0.86) 100%
     );
+}
+
+/* Landing — Figma title card: photo present, dark top wash, soft white foot */
+.hero .backdrop {
+  background-position: center 18%;
+  filter: saturate(1) contrast(1.04) brightness(1);
+}
+
+/*
+ * Desktop — Figma MacBook: photo pushed up so faces sit in the upper band
+ * above the mid-frame title lockup. (Figma image top ≈ -471px on 832px frame)
+ */
+@media (min-width: 900px) {
+  .hero .backdrop {
+    top: -56%;
+    right: 0;
+    bottom: -15%;
+    left: 0;
+    background-size: cover;
+    background-position: center 32%;
+    transform: none;
+  }
+
+  .hero .veil {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.55) 0%,
+        rgba(0, 0, 0, 0) 32%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0) 55%,
+        rgba(255, 255, 255, 0.4) 75%,
+        rgba(255, 255, 255, 0.92) 90%,
+        #ffffff 100%
+      );
+  }
+}
+
+.hero .veil {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.6) 0%,
+      rgba(0, 0, 0, 0) 34%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0) 68%,
+      rgba(255, 255, 255, 0.45) 82%,
+      rgba(255, 255, 255, 0.92) 93%,
+      #ffffff 100%
+    );
+}
+
+/* Transition phases */
+.phase_leaving .veil {
+  opacity: 0.85;
+}
+
+.phase_reveal .backdrop {
+  filter: saturate(1.02) contrast(1.08) brightness(1.03);
+}
+
+.phase_reveal .veil {
+  opacity: 0.28;
+}
+
+.phase_white .veil {
+  opacity: 0;
+}
+
+.phase_white .whiteout {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .backdrop,
+  .veil,
+  .whiteout {
+    transition: none;
+  }
 }
