@@ -2,10 +2,13 @@ export type AppView = 'landing' | 'experience';
 
 export interface SiteMeta {
   title: string;
+  titlePrefix: string;
+  titleEmphasis: string;
   subtitle: string;
   logline: string;
   synopsis: string;
   yearArc: string;
+  premiere: string;
 }
 
 export interface UnlockState {

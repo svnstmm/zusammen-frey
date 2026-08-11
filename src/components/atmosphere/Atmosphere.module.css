@@ -3,10 +3,42 @@
   inset: 0;
   z-index: 0;
   pointer-events: none;
+  overflow: hidden;
 }
 
 .field {
   position: absolute;
   inset: 0;
   background-color: var(--color-paper);
+}
+
+.backdrop {
+  position: absolute;
+  inset: -3%;
+  background-image: url('/images/backdrop.jpg');
+  background-repeat: no-repeat;
+  background-position: center 22%;
+  background-size: cover;
+  filter: saturate(0.88) contrast(1.05) brightness(1.02);
+  transform: scale(1.06);
+}
+
+.veil {
+  position: absolute;
+  inset: 0;
+  /* Keep faces faintly visible; wash more toward the reading plane */
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.48) 0%,
+      rgba(255, 255, 255, 0.68) 28%,
+      rgba(255, 255, 255, 0.84) 58%,
+      rgba(255, 255, 255, 0.93) 100%
+    ),
+    radial-gradient(
+      ellipse 90% 75% at 50% 28%,
+      rgba(255, 255, 255, 0.28) 0%,
+      rgba(255, 255, 255, 0.62) 70%,
+      rgba(255, 255, 255, 0.86) 100%
+    );
 }

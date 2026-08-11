@@ -1,23 +1,26 @@
 :root {
-  /* Surface */
-  --color-paper: #f3efe6;
-  --color-paper-deep: #ebe4d6;
-  --color-ink: #1a1814;
-  --color-ink-soft: #2c2924;
-  --color-ink-muted: #6b6560;
-  --color-ink-faint: #9a938a;
-  --color-accent: #e95b0c;
-  --color-accent-soft: rgba(233, 91, 12, 0.72);
-  --color-rule: rgba(26, 24, 20, 0.14);
+  /* Surface — clean gallery white, matching the poster matte */
+  --color-paper: #ffffff;
+  --color-paper-deep: #f4f2ef;
+  --color-ink: #050505;
+  --color-ink-soft: #141414;
+  --color-ink-muted: #3a3a3a;
+  --color-ink-faint: #5c5c5c;
+  --color-ink-inverse: #ffffff;
+  --color-accent: #d45212;
+  --color-accent-soft: rgba(212, 82, 18, 0.82);
+  --color-rule: rgba(5, 5, 5, 0.22);
+  --color-veil: rgba(8, 8, 8, 0.28);
 
-  /* Typography */
+  /* Typography — Glacial Indifference leads, per poster */
   --font-display: 'Glacial Indifference', 'Helvetica Neue', Helvetica, Arial,
     sans-serif;
   --font-mono: 'IBM Plex Mono', 'SF Mono', ui-monospace, monospace;
   --font-serif: 'Cormorant Garamond', 'Times New Roman', Times, serif;
 
   /* Type scale */
-  --text-hero: clamp(2.75rem, 8vw, 5.5rem);
+  --text-hero: clamp(3.25rem, 11vw, 7rem);
+  --text-hero-sub: clamp(1.35rem, 3.8vw, 2.35rem);
   --text-title: clamp(1.75rem, 4vw, 2.75rem);
   --text-body: clamp(1rem, 1.5vw, 1.125rem);
   --text-small: clamp(0.7rem, 1.1vw, 0.8rem);
@@ -39,8 +42,8 @@
   --page-pad-x: clamp(1.5rem, 5vw, 4rem);
   --page-pad-y: clamp(2rem, 8vh, 5rem);
 
-  /* Atmosphere */
+  /* Atmosphere — cinematic photo wash + film texture */
   --grain-opacity: 0.055;
-  --paper-opacity: 0.35;
-  --flicker-duration: 0.12s;
+  --paper-opacity: 0.08;
+  --flicker-duration: 0.14s;
 }

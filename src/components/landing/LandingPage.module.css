@@ -17,25 +17,40 @@
 }
 
 .eyebrow {
-  font-family: var(--font-mono);
+  font-family: var(--font-display);
   font-size: var(--text-small);
-  font-weight: 400;
-  letter-spacing: 0.38em;
+  font-weight: 700;
+  letter-spacing: 0.36em;
   text-transform: uppercase;
-  text-indent: 0.38em;
+  text-indent: 0.36em;
   color: var(--color-ink-muted);
 }
 
 .title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-top: var(--space-6);
+  color: var(--color-accent);
+  line-height: 0.92;
+}
+
+.titlePrefix {
+  font-family: var(--font-display);
+  font-size: var(--text-hero-sub);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+}
+
+.titleEmphasis {
+  margin-top: 0.06em;
   font-family: var(--font-display);
   font-size: var(--text-hero);
-  font-weight: 400;
-  letter-spacing: 0.085em;
-  line-height: 0.95;
-  text-indent: 0.085em;
-  color: var(--color-ink);
-  text-wrap: balance;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-indent: 0.06em;
 }
 
 .divider {
@@ -53,28 +68,15 @@
   opacity: 0.85;
 }
 
-.logline {
-  font-family: var(--font-serif);
-  font-size: clamp(1.25rem, 2.6vw, 1.65rem);
-  font-weight: 400;
-  font-style: italic;
-  letter-spacing: 0.02em;
-  line-height: 1.35;
-  color: var(--color-ink-soft);
-}
-
 .synopsis {
-  margin-top: var(--space-5);
-  font-family: var(--font-mono);
+  font-family: var(--font-display);
   font-size: var(--text-small);
+  font-weight: 700;
   letter-spacing: 0.22em;
   text-transform: uppercase;
+  text-indent: 0.22em;
   color: var(--color-ink-muted);
   line-height: 1.9;
-}
-
-.synopsis p {
-  text-indent: 0.22em;
 }
 
 .action {
@@ -82,9 +84,9 @@
 }
 
 @media (max-width: 480px) {
-  .title {
-    letter-spacing: 0.06em;
-    text-indent: 0.06em;
+  .titleEmphasis {
+    letter-spacing: 0.045em;
+    text-indent: 0.045em;
   }
 
   .action {

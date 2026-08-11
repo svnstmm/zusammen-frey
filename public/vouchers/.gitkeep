@@ -1,0 +1,3 @@
+# PDF and image vouchers live here.
+# Reference them from chapter data as /vouchers/filename.ext
+# Do not import these files into the JS bundle.

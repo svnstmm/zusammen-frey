@@ -1,34 +1,34 @@
 import { useMemo } from 'react';
 import { chapters } from '../data/chapters';
-import type { Chapter, ChapterStatus } from '../types/chapter';
+import {
+  getComingSoonLabel,
+  getLockedAvailabilityCopy,
+  getReleaseLabel,
+  isChapterUnlocked,
+} from '../lib/chapterAccess';
+import type { Chapter } from '../types/chapter';
 
-/**
- * Unlock logic stub.
- * Later: date gates, passwords, analytics hooks.
- */
-export function useUnlock() {
+export function useUnlock(now: Date = new Date()) {
   const resolved = useMemo(() => {
     return chapters.map((chapter) => ({
-      ...chapter,
-      // Placeholder: all locked until unlock system lands.
-      status: chapter.status as ChapterStatus,
+      chapter,
+      unlocked: isChapterUnlocked(chapter, now),
+      releaseLabel: getReleaseLabel(chapter),
+      comingSoonLabel: getComingSoonLabel(chapter),
+      lockedAvailability: getLockedAvailabilityCopy(chapter),
     }));
-  }, []);
+  }, [now]);
 
-  const isUnlocked = (id: number): boolean => {
-    const chapter = resolved.find((item) => item.id === id);
-    return chapter?.status === 'unlocked' || chapter?.status === 'revealed';
-  };
+  const isUnlocked = (id: number): boolean =>
+    resolved.find((item) => item.chapter.id === id)?.unlocked ?? false;
 
   const getUnlockedChapters = (): Chapter[] =>
-    resolved.filter(
-      (chapter) =>
-        chapter.status === 'unlocked' || chapter.status === 'revealed',
-    );
+    resolved.filter((item) => item.unlocked).map((item) => item.chapter);
 
   return {
-    chapters: resolved,
+    entries: resolved,
     isUnlocked,
     getUnlockedChapters,
+    isChapterUnlocked: (chapter: Chapter) => isChapterUnlocked(chapter, now),
   };
 }

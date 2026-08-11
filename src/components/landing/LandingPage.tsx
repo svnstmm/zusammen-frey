@@ -10,8 +10,6 @@ interface LandingPageProps {
 }
 
 export function LandingPage({ onEnter, isExiting = false }: LandingPageProps) {
-  const synopsisLines = siteMeta.synopsis.split('\n');
-
   return (
     <motion.main
       className={styles.page}
@@ -36,19 +34,16 @@ export function LandingPage({ onEnter, isExiting = false }: LandingPageProps) {
         </motion.p>
 
         <motion.h1 className={styles.title} variants={fadeUp}>
-          {siteMeta.title}
+          <span className={styles.titlePrefix}>{siteMeta.titlePrefix}</span>
+          <span className={styles.titleEmphasis}>{siteMeta.titleEmphasis}</span>
         </motion.h1>
 
         <motion.div className={styles.divider} variants={fadeUp} aria-hidden="true">
           <span className={styles.dividerMark} />
         </motion.div>
 
-        <motion.p className={styles.logline} variants={fadeUp}>
-          {siteMeta.logline}
-        </motion.p>
-
         <motion.div className={styles.synopsis} variants={fadeUp}>
-          {synopsisLines.map((line) => (
+          {siteMeta.synopsis.split('\n').map((line) => (
             <p key={line}>{line}</p>
           ))}
         </motion.div>

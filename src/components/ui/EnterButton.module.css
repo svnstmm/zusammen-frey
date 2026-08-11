@@ -5,13 +5,13 @@
   gap: var(--space-3);
   margin-top: var(--space-2);
   padding: var(--space-3) var(--space-5);
-  color: var(--color-ink);
-  transition: color 0.6s ease;
+  color: var(--color-accent);
+  transition: color 0.5s ease, opacity 0.5s ease;
 }
 
 .button:hover:not(:disabled),
 .button:focus-visible:not(:disabled) {
-  color: var(--color-accent);
+  color: var(--color-ink);
 }
 
 .button:disabled {
@@ -20,12 +20,12 @@
 }
 
 .label {
-  font-family: var(--font-mono);
+  font-family: var(--font-display);
   font-size: var(--text-small);
-  font-weight: 400;
-  letter-spacing: 0.42em;
+  font-weight: 700;
+  letter-spacing: 0.4em;
   text-transform: uppercase;
-  text-indent: 0.42em;
+  text-indent: 0.4em;
 }
 
 .rule {
@@ -34,13 +34,13 @@
   max-width: 4.5rem;
   height: 1px;
   background-color: currentColor;
-  opacity: 0.55;
+  opacity: 0.7;
   transform-origin: center;
-  transition: opacity 0.6s ease, transform 0.8s ease;
+  transition: opacity 0.5s ease, transform 0.7s ease;
 }
 
 .button:hover:not(:disabled) .rule,
 .button:focus-visible:not(:disabled) .rule {
   opacity: 1;
-  transform: scaleX(1.15);
+  transform: scaleX(1.18);
 }

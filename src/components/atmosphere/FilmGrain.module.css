@@ -5,7 +5,7 @@
   pointer-events: none;
   overflow: hidden;
   opacity: var(--grain-opacity);
-  mix-blend-mode: multiply;
+  mix-blend-mode: soft-light;
 }
 
 .noise {

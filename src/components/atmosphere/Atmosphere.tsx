@@ -6,6 +6,8 @@ export function Atmosphere() {
   return (
     <div className={styles.root} aria-hidden="true">
       <div className={styles.field} />
+      <div className={styles.backdrop} />
+      <div className={styles.veil} />
       <PaperTexture />
       <FilmGrain />
     </div>

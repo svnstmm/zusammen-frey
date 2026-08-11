@@ -6,12 +6,10 @@ import {
   useState,
   type ReactNode,
 } from 'react';
-import type { AppView } from '../types/experience';
+import { useNavigate } from 'react-router-dom';
 
 interface ExperienceContextValue {
-  view: AppView;
   enter: () => void;
-  returnToLanding: () => void;
   isTransitioning: boolean;
 }
 
@@ -22,31 +20,24 @@ interface ExperienceProviderProps {
 }
 
 export function ExperienceProvider({ children }: ExperienceProviderProps) {
-  const [view, setView] = useState<AppView>('landing');
+  const navigate = useNavigate();
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   const enter = useCallback(() => {
-    if (view !== 'landing' || isTransitioning) return;
+    if (isTransitioning) return;
     setIsTransitioning(true);
-    // Allow dissolve to complete before committing the view.
     window.setTimeout(() => {
-      setView('experience');
+      navigate('/chapters');
       setIsTransitioning(false);
     }, 1100);
-  }, [view, isTransitioning]);
-
-  const returnToLanding = useCallback(() => {
-    setView('landing');
-  }, []);
+  }, [isTransitioning, navigate]);
 
   const value = useMemo(
     () => ({
-      view,
       enter,
-      returnToLanding,
       isTransitioning,
     }),
-    [view, enter, returnToLanding, isTransitioning],
+    [enter, isTransitioning],
   );
 
   return (
