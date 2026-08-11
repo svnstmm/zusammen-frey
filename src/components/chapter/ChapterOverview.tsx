@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { chapters } from '../../data/chapters';
+import { siteMeta } from '../../data/site';
 import { soundtrack } from '../../data/soundtrack';
 import {
   getReleaseLabel,
@@ -25,13 +26,14 @@ export function ChapterOverview() {
     >
       <header className={styles.header}>
         <motion.p className={styles.kicker} variants={fadeUp}>
-          Director&apos;s Cut
+          {siteMeta.subtitle}
         </motion.p>
         <motion.h1 className={styles.heading} variants={fadeUp}>
-          Twelve Chapters
+          <span className={styles.titlePrefix}>{siteMeta.titlePrefix}</span>
+          <span className={styles.titleEmphasis}>{siteMeta.titleEmphasis}</span>
         </motion.h1>
         <motion.p className={styles.deck} variants={fadeUp}>
-          One year. Twelve scenes.
+          {siteMeta.yearArc}
         </motion.p>
       </header>
 
@@ -61,11 +63,9 @@ export function ChapterOverview() {
                   <span className={styles.teaser}>{chapter.subtitle}</span>
                 ) : (
                   <span className={styles.coming}>
-                    <span className={styles.comingLabel}>
-                      {release ? 'Coming' : 'Coming soon'}
-                    </span>
+                    <span className={styles.comingLabel}>Premieres</span>
                     <span className={styles.comingWhen}>
-                      {release ?? 'Release date to be announced'}
+                      {release ?? 'Date to be announced'}
                     </span>
                   </span>
                 )}
