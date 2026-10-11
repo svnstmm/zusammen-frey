@@ -25,7 +25,7 @@ export function ClaimRequest({ slug, chapterLabel }: ClaimRequestProps) {
   }, [slug]);
 
   const requestVoucher = async () => {
-    if (state === 'submitting' || state === 'done') return;
+    if (state === 'submitting') return;
     setState('submitting');
     setError(null);
 
@@ -63,6 +63,11 @@ export function ClaimRequest({ slug, chapterLabel }: ClaimRequestProps) {
     }
   };
 
+  const requestAgain = () => {
+    setError(null);
+    setState('idle');
+  };
+
   if (state === 'done') {
     return (
       <div className={styles.root}>
@@ -71,6 +76,13 @@ export function ClaimRequest({ slug, chapterLabel }: ClaimRequestProps) {
           <br />
           The voucher for {chapterLabel} will arrive by email.
         </p>
+        <button
+          type="button"
+          className={styles.secondary}
+          onClick={requestAgain}
+        >
+          Request again
+        </button>
       </div>
     );
   }
