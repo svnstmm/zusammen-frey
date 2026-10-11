@@ -36,12 +36,18 @@ export function ClaimRequest({ slug, chapterLabel }: ClaimRequestProps) {
         body: JSON.stringify({ slug }),
       });
 
-      const data = (await response.json().catch(() => ({}))) as {
-        error?: string;
-      };
+      const raw = await response.text();
+      let data: { error?: string } = {};
+      try {
+        data = raw ? (JSON.parse(raw) as { error?: string }) : {};
+      } catch {
+        data = {};
+      }
 
       if (!response.ok) {
-        throw new Error(data.error ?? 'Request failed');
+        throw new Error(
+          data.error ?? `Request failed (${response.status})`,
+        );
       }
 
       try {
@@ -77,10 +83,7 @@ export function ClaimRequest({ slug, chapterLabel }: ClaimRequestProps) {
         onClick={requestVoucher}
         disabled={state === 'submitting'}
       >
-        <span className={styles.label}>
-          {state === 'submitting' ? 'Sending request…' : 'Request voucher →'}
-        </span>
-        <span className={styles.rule} aria-hidden="true" />
+        {state === 'submitting' ? 'Sending request…' : 'Request voucher →'}
       </button>
 
       <p className={styles.privacy}>
