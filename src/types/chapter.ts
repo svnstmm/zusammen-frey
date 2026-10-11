@@ -1,13 +1,5 @@
 export type ChapterStatus = 'available' | 'locked' | 'redeemed';
 
-export type VoucherType =
-  | 'pdf'
-  | 'external-link'
-  | 'paypal'
-  | 'code'
-  | 'image'
-  | 'none';
-
 export type ReleaseDisplay = 'month' | 'date';
 
 export interface ChapterAccess {
@@ -21,28 +13,19 @@ export interface ChapterAccess {
   releaseDisplay?: ReleaseDisplay;
 }
 
-export interface ChapterVoucher {
-  type: VoucherType;
-  /** Credits-style action label; falls back by type when omitted. */
-  label?: string;
-  url?: string;
-  file?: string;
-  code?: string;
-  amount?: number;
-  note?: string;
-}
-
 /**
- * Gift / venue payload.
- * Only render when the chapter is unlocked.
- * Structured for a later move to a protected source (API / gated JSON).
+ * Public gift framing shown after unlock.
+ * Redeemable voucher details are never shipped to the client —
+ * they are fulfilled manually after a claim request.
  */
 export interface ChapterReveal {
   description?: string;
   venue?: string;
   category?: string;
+  /** Soft public hint only (e.g. ice-cream budget). Not a redeemable. */
   value?: number;
-  voucher?: ChapterVoucher;
+  /** When false, hide the claim CTA. Defaults to true. */
+  claimable?: boolean;
 }
 
 export interface Chapter {

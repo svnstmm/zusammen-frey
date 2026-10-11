@@ -6,7 +6,7 @@ import {
   isChapterUnlocked,
 } from '../../lib/chapterAccess';
 import { fadeUp, staggerChildren } from '../../lib/motion';
-import { VoucherAction } from '../voucher/VoucherAction';
+import { ClaimRequest } from '../voucher/ClaimRequest';
 import styles from './ChapterDetail.module.css';
 
 export function ChapterDetail() {
@@ -22,6 +22,7 @@ export function ChapterDetail() {
   const reveal = unlocked ? chapter.reveal : undefined;
   const experienceLabel = reveal?.category?.toUpperCase() ?? null;
   const hasReveal = Boolean(reveal?.category || reveal?.venue);
+  const claimable = reveal?.claimable !== false;
 
   return (
     <motion.article
@@ -75,9 +76,12 @@ export function ChapterDetail() {
             </motion.section>
           ) : null}
 
-          {reveal?.voucher ? (
+          {claimable ? (
             <motion.div variants={fadeUp}>
-              <VoucherAction voucher={reveal.voucher} />
+              <ClaimRequest
+                slug={chapter.slug}
+                chapterLabel={`${chapter.number} ${chapter.title}`}
+              />
             </motion.div>
           ) : null}
         </>

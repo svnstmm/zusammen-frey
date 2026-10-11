@@ -3,9 +3,8 @@ import type { Chapter } from '../types/chapter';
 /**
  * Single source of truth for all twelve chapters.
  *
- * Public fields (title, subtitle, access) are safe for overview.
- * Gift details live under `reveal` and must only render when unlocked —
- * later this payload can move to a protected source without rewriting UI.
+ * Public fields only. Redeemable vouchers are never stored here —
+ * unlocked chapters expose a claim request; fulfillment is manual email.
  */
 export const chapters: Chapter[] = [
   {
@@ -25,10 +24,6 @@ export const chapters: Chapter[] = [
         'Light finds the frame. Two seats, one morning, the first shared scene.',
       category: 'Breakfast',
       venue: 'TBD',
-      voucher: {
-        type: 'none',
-        note: 'TODO: voucher details',
-      },
     },
   },
   {
@@ -48,11 +43,6 @@ export const chapters: Chapter[] = [
         'Steam rises. Conversation finds its rhythm. A city slows for a moment.',
       category: 'Specialty Coffee',
       venue: 'Balthasar Kaffee Bar',
-      voucher: {
-        type: 'external-link',
-        label: 'Visit Venue',
-        url: 'TODO: venue URL',
-      },
     },
   },
   {
@@ -72,10 +62,6 @@ export const chapters: Chapter[] = [
         'Platforms, windows, landscapes in motion — the year in cuts and dissolves.',
       category: 'Travel',
       venue: 'ÖBB / DB',
-      voucher: {
-        type: 'none',
-        note: 'TODO: travel voucher',
-      },
     },
   },
   {
@@ -95,11 +81,6 @@ export const chapters: Chapter[] = [
         'Rooms arranged with intention. Look long enough and the story looks back.',
       category: 'Museum',
       venue: 'Albertina Modern',
-      voucher: {
-        type: 'pdf',
-        label: 'Open Voucher',
-        file: 'TODO: /vouchers/albertina.pdf',
-      },
     },
   },
   {
@@ -119,10 +100,6 @@ export const chapters: Chapter[] = [
         'Sugar, glaze, a quiet table — intimacy in miniature.',
       category: 'Patisserie',
       venue: 'Crème de la Crème',
-      voucher: {
-        type: 'none',
-        note: 'TODO: patisserie voucher',
-      },
     },
   },
   {
@@ -143,13 +120,6 @@ export const chapters: Chapter[] = [
       category: 'Ice Cream',
       venue: 'Open choice',
       value: 10,
-      voucher: {
-        type: 'paypal',
-        label: 'Claim €10',
-        url: 'TODO: PayPal.me link',
-        amount: 10,
-        note: '€10 for ice cream — wherever the interval takes you.',
-      },
     },
   },
   {
@@ -169,11 +139,6 @@ export const chapters: Chapter[] = [
         'Dark room. Shared silence. Two films, or one long night — either way, together.',
       category: 'Cinema',
       venue: 'Filmcasino',
-      voucher: {
-        type: 'external-link',
-        label: 'Visit Venue',
-        url: 'TODO: Filmcasino URL',
-      },
     },
   },
   {
@@ -193,10 +158,6 @@ export const chapters: Chapter[] = [
         'Wardrobe as character. A new silhouette for the next scene.',
       category: 'Fashion',
       venue: 'Luv the Shop',
-      voucher: {
-        type: 'none',
-        note: 'TODO: fashion voucher',
-      },
     },
   },
   {
@@ -216,10 +177,6 @@ export const chapters: Chapter[] = [
         'The hour when everything is warm and unfinished. Order something slow.',
       category: 'Bar',
       venue: 'TBD',
-      voucher: {
-        type: 'none',
-        note: 'TODO: bar voucher',
-      },
     },
   },
   {
@@ -239,10 +196,6 @@ export const chapters: Chapter[] = [
         'Courses as acts. Conversation as score. Stay for the encore.',
       category: 'Restaurant',
       venue: 'TBD',
-      voucher: {
-        type: 'none',
-        note: 'TODO: dinner voucher',
-      },
     },
   },
   {
@@ -262,11 +215,6 @@ export const chapters: Chapter[] = [
         'Steam, water, quiet. Let the year soften at the edges.',
       category: 'Spa / Relax',
       venue: 'Therme Wien',
-      voucher: {
-        type: 'pdf',
-        label: 'Open Voucher',
-        file: 'TODO: /vouchers/therme-wien.pdf',
-      },
     },
   },
   {
@@ -286,10 +234,6 @@ export const chapters: Chapter[] = [
         'A small world, newly shared. The sequel is already writing itself.',
       category: 'Child / Family',
       venue: 'Herr und Frau Klein',
-      voucher: {
-        type: 'none',
-        note: 'TODO: family voucher',
-      },
     },
   },
 ];
