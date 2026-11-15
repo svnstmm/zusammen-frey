@@ -26,8 +26,9 @@ const CHAPTERS = [
     number: '03',
     title: 'Montage',
     unlockDate: '2026-11-01',
+    forceUnlocked: true,
     category: 'Travel',
-    venue: 'ÖBB / DB',
+    venue: 'Deutsche Bahn',
   },
   {
     slug: 'mise-en-scene',
@@ -103,13 +104,16 @@ const CHAPTERS = [
   },
 ] as const;
 
+type ClaimChapter = (typeof CHAPTERS)[number];
+
 function parseLocalDate(isoDate: string): Date {
   const [year, month, day] = isoDate.split('-').map(Number);
   return new Date(year, month - 1, day);
 }
 
-function isUnlocked(unlockDate: string, now = new Date()): boolean {
-  const unlockDay = parseLocalDate(unlockDate);
+function isUnlocked(chapter: ClaimChapter, now = new Date()): boolean {
+  if ('forceUnlocked' in chapter && chapter.forceUnlocked) return true;
+  const unlockDay = parseLocalDate(chapter.unlockDate);
   const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
   return today >= unlockDay;
 }
@@ -221,7 +225,7 @@ export default async function handler(
       return res.status(404).json({ error: 'Chapter not found' });
     }
 
-    if (!isUnlocked(chapter.unlockDate)) {
+    if (!isUnlocked(chapter)) {
       return res.status(403).json({ error: 'Chapter is still locked' });
     }
 

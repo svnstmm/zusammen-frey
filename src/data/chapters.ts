@@ -50,18 +50,19 @@ export const chapters: Chapter[] = [
     slug: 'montage',
     number: '03',
     title: 'Montage',
-    subtitle: 'Leaving the city together.',
+    subtitle: 'Pack light. Go somewhere new.',
     access: {
       locked: true,
       unlockDate: '2026-11-01',
       releaseDisplay: 'month',
+      forceUnlocked: true,
     },
     image: null,
     reveal: {
       description:
-        'Travel is how a relationship stretches — shared tickets, shared windows, the little logistics of going somewhere as a pair. This one’s for trains (ÖBB / DB): a day trip or a longer hop, landscapes sliding by, the feeling that your world just got a bit bigger together.',
+        'This month is for leaving Vienna for a bit — not a big production, just the two of you on a train, watching the landscape change. A Deutsche Bahn voucher so you can travel and explore: pick a city, a lake, a weekend away. Shared seats, shared snacks, the quiet pleasure of going somewhere just because you can.',
       category: 'Travel',
-      venue: 'ÖBB / DB',
+      venue: 'Deutsche Bahn',
     },
   },
   {
