@@ -18,6 +18,7 @@ const CHAPTERS = [
     number: '02',
     title: 'Meet Cute',
     unlockDate: '2026-10-01',
+    redeemed: true,
     category: 'Specialty Coffee',
     venue: 'Balthasar Kaffee Bar',
   },
@@ -227,6 +228,10 @@ export default async function handler(
 
     if (!isUnlocked(chapter)) {
       return res.status(403).json({ error: 'Chapter is still locked' });
+    }
+
+    if ('redeemed' in chapter && chapter.redeemed) {
+      return res.status(409).json({ error: 'This chapter has already been lived' });
     }
 
     const hasEmail = Boolean(

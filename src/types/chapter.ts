@@ -37,7 +37,10 @@ export interface Chapter {
   subtitle: string;
   access: ChapterAccess;
   image?: string | null;
+  /** Set to `redeemed` once the voucher has been lived. */
   status?: ChapterStatus;
+  /** Optional personal line for the scene-complete celebration. */
+  redeemedNote?: string;
   reveal?: ChapterReveal;
 }
 

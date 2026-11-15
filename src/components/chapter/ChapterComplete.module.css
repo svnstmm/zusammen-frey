@@ -1,0 +1,54 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: var(--space-7);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-rule);
+}
+
+.kicker {
+  font-family: var(--font-display);
+  font-size: var(--text-micro);
+  font-weight: 700;
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  text-indent: 0.36em;
+  color: var(--color-accent);
+}
+
+.note {
+  margin-top: var(--space-4);
+  max-width: 26rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.05rem, 2.4vw, 1.2rem);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.7;
+  text-align: center;
+  color: var(--color-ink-soft);
+  text-wrap: pretty;
+}
+
+.venueEcho {
+  margin-top: var(--space-4);
+  font-family: var(--font-display);
+  font-size: var(--text-micro);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-indent: 0.2em;
+  color: var(--color-ink-muted);
+}
+
+.closing {
+  margin-top: var(--space-5);
+  font-family: var(--font-display);
+  font-size: var(--text-micro);
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  text-indent: 0.28em;
+  color: var(--color-ink-faint);
+}

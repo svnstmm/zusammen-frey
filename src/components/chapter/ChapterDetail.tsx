@@ -3,10 +3,12 @@ import { Link, Navigate, useParams } from 'react-router-dom';
 import { getAdjacentChapters, getChapterBySlug } from '../../data/chapters';
 import {
   getLockedAvailabilityCopy,
+  isChapterRedeemed,
   isChapterUnlocked,
 } from '../../lib/chapterAccess';
 import { fadeUp, staggerChildren } from '../../lib/motion';
 import { ClaimRequest } from '../voucher/ClaimRequest';
+import { ChapterComplete } from './ChapterComplete';
 import styles from './ChapterDetail.module.css';
 
 export function ChapterDetail() {
@@ -18,11 +20,12 @@ export function ChapterDetail() {
   }
 
   const unlocked = isChapterUnlocked(chapter);
+  const redeemed = isChapterRedeemed(chapter);
   const { previous, next } = getAdjacentChapters(chapter.slug);
   const reveal = unlocked ? chapter.reveal : undefined;
   const experienceLabel = reveal?.category?.toUpperCase() ?? null;
   const hasReveal = Boolean(reveal?.category || reveal?.venue);
-  const claimable = reveal?.claimable !== false;
+  const claimable = !redeemed && reveal?.claimable !== false;
 
   return (
     <motion.article
@@ -76,7 +79,11 @@ export function ChapterDetail() {
             </motion.section>
           ) : null}
 
-          {claimable ? (
+          {redeemed ? (
+            <motion.div variants={fadeUp}>
+              <ChapterComplete chapter={chapter} />
+            </motion.div>
+          ) : claimable ? (
             <motion.div variants={fadeUp}>
               <ClaimRequest
                 slug={chapter.slug}

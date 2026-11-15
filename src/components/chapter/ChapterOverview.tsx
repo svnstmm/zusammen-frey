@@ -5,6 +5,7 @@ import { siteMeta } from '../../data/site';
 import { soundtrack } from '../../data/soundtrack';
 import {
   getReleaseLabel,
+  isChapterRedeemed,
   isChapterUnlocked,
 } from '../../lib/chapterAccess';
 import { fadeUp, staggerChildren } from '../../lib/motion';
@@ -40,27 +41,41 @@ export function ChapterOverview() {
       <ol className={styles.strip}>
         {chapters.map((chapter) => {
           const unlocked = isChapterUnlocked(chapter);
+          const redeemed = isChapterRedeemed(chapter);
           const release = getReleaseLabel(chapter);
 
           return (
             <motion.li
               key={chapter.id}
-              className={`${styles.frame} ${unlocked ? '' : styles.frameLocked}`}
+              className={`${styles.frame} ${unlocked ? '' : styles.frameLocked} ${redeemed ? styles.frameRedeemed : ''}`}
               variants={fadeUp}
             >
               <Link
                 to={`/chapters/${chapter.slug}`}
                 className={`${styles.link} ${unlocked ? '' : styles.linkLocked}`}
                 aria-label={
-                  unlocked
-                    ? `Chapter ${chapter.number}: ${chapter.title}`
-                    : `Chapter ${chapter.number}: ${chapter.title} — coming soon`
+                  redeemed
+                    ? `Chapter ${chapter.number}: ${chapter.title} — scene complete`
+                    : unlocked
+                      ? `Chapter ${chapter.number}: ${chapter.title}`
+                      : `Chapter ${chapter.number}: ${chapter.title} — coming soon`
                 }
               >
                 <span className={styles.number}>{chapter.number}</span>
                 <span className={styles.title}>{chapter.title}</span>
                 {unlocked ? (
-                  <span className={styles.teaser}>{chapter.subtitle}</span>
+                  <span className={styles.teaser}>
+                    {redeemed ? (
+                      <span className={styles.lived}>
+                        <span className={styles.livedLabel}>Lived</span>
+                        <span className={styles.livedNote}>
+                          {chapter.subtitle}
+                        </span>
+                      </span>
+                    ) : (
+                      chapter.subtitle
+                    )}
+                  </span>
                 ) : (
                   <span className={styles.coming}>
                     <span className={styles.comingLabel}>Premieres</span>

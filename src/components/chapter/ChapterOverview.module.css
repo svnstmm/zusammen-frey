@@ -147,6 +147,35 @@
   color: var(--color-ink-muted);
 }
 
+.frameRedeemed .number {
+  opacity: 0.85;
+}
+
+.lived {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.livedLabel {
+  font-family: var(--font-display);
+  font-size: var(--text-micro);
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  text-indent: 0.28em;
+  color: var(--color-accent);
+}
+
+.livedNote {
+  font-family: var(--font-display);
+  font-size: var(--text-small);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.55;
+  color: var(--color-ink-muted);
+}
+
 .coming {
   grid-column: 2;
   display: flex;

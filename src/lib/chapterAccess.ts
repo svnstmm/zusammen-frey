@@ -46,6 +46,11 @@ export function isChapterUnlocked(
   return false;
 }
 
+/** Whether the voucher for this chapter has already been lived. */
+export function isChapterRedeemed(chapter: Chapter): boolean {
+  return chapter.status === 'redeemed';
+}
+
 export function formatReleaseLabel(
   isoDate: string,
   display: ReleaseDisplay = 'month',

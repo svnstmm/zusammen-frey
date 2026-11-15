@@ -37,12 +37,16 @@ export const chapters: Chapter[] = [
       unlockDate: '2026-10-01',
       releaseDisplay: 'month',
     },
+    status: 'redeemed',
+    redeemedNote:
+      'Coffee shared at Balthasar. The conversation kept going — this scene is complete.',
     image: null,
     reveal: {
       description:
         'Coffee is for the in-between moments — when you already like each other enough to meet again, but everything still feels a bit new. Balthasar is small, focused, and good for talking without a plan. One specialty coffee, nowhere else to be.',
       category: 'Specialty Coffee',
       venue: 'Balthasar Kaffee Bar',
+      claimable: false,
     },
   },
   {
